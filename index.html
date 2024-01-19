@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movie App</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="nav__content">
+        <h1 class="nav__title">Movie App</h1>
+        <ul class="nav__item__contener">
+          <li class="nav__item li-premieres">Movie Premieres</li>
+          <li class="nav__item li-anticipated">Anticipated Movies</li>
+          <li class="nav__item li-top">Top Movies</li>
+          <li class="nav__item li-releases">New Releases</li>
+          <li class="nav__item li-favorite">favorite</li>
+        </ul>
+        <form class="nav__form">
+          <input placeholder="Search" class="nav__input" type="text" />
+        </form>
+      </div>
+    </header>
+
+    <div class="container__moves__list">
+      <div class="container__films__premiere hidden"></div>
+      <div class="container__films__anti__top hidden"></div>
+      <div class="container__films__top hidden"></div>
+      <div class="container__films__new__relised hidden"></div>
+      <div class="container__films__favorite hidden"></div>
+    </div>
+
+    <script src="./main.js"></script>
+  </body>
+</html>
