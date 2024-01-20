@@ -1,3 +1,4 @@
+
 const API_KEY = "0cdc608c-0bdc-494e-ae6c-bec3b627499b";
 
 const months = [
@@ -59,8 +60,8 @@ const getPmiers = async () => {
       />
       <p class="film__card-title">${elem.nameRu}</p>
       <p class="film__card-genres">${elem.genres
-        .map((item, idx) => ` ${item.genre}`)
-        .filter((_, idx) => idx < 3)}</p>
+        .map((item, x) => ` ${item.genre}`)
+        .filter((_, x) => x < 3)}</p>
     </div>`;
     });
   } catch (error) {
@@ -120,8 +121,8 @@ const getAnti = async () => {
         />
         <p class="film__card-title">${elem.nameRu}</p>
         <p class="film__card-genres">${elem.genres
-          .map((item, idx) => ` ${item.genre}`)
-          .filter((_, idx) => idx < 3)}</p>
+          .map((item, x) => ` ${item.genre}`)
+          .filter((_, x) => x < 3)}</p>
       </div>`;
     });
   } catch (error) {
@@ -186,8 +187,8 @@ const getTop = async () => {
       />
       <p class="film__card-title">${elem.nameRu}</p>
       <p class="film__card-genres">${elem.genres
-        .map((item, idx) => ` ${item.genre}`)
-        .filter((_, idx) => idx < 3)}</p>
+        .map((item, x) => ` ${item.genre}`)
+        .filter((_, x) => x < 3)}</p>
     </div>`;
     });
   } catch (error) {
@@ -250,8 +251,8 @@ const getReleases = async () => {
       />
       <p class="film__card-title">${elem.nameRu}</p>
       <p class="film__card-genres">${elem.genres
-        .map((item, idx) => ` ${item.genre}`)
-        .filter((_, idx) => idx < 3)}</p>
+        .map((item, x) => ` ${item.genre}`)
+        .filter((_, x) => x < 3)}</p>
     </div>`;
     });
   } catch (error) {
@@ -281,7 +282,7 @@ liNavFavor.addEventListener("click", () => {
   filmContenerFavor.classList.toggle("hidden");
 
   if (liNavFavor.classList.contains("nav__active")) {
-    filmContenerFavor.innerHTML = '<p class="films__favorites-p">Избранные</p>';
+    filmContenerFavor.innerHTML = `<p class="films__favorites-p">избранные</p>`;
   }
 });
 
@@ -302,6 +303,9 @@ document.addEventListener("click", (e) => {
           "https://cdn-icons-png.flaticon.com/128/5011/5011077.png";
 
         filmContenerFavor.appendChild(filmCard.cloneNode(true));
+        const item = filmCard.cloneNode(true);
+        localStorage.setItem("favItem", item);
+        console.log(favItem);
       } else {
         favoriteIcon.src =
           "https://cdn-icons-png.flaticon.com/128/2589/2589197.png";
@@ -309,5 +313,58 @@ document.addEventListener("click", (e) => {
         filmContenerFavor.removeChild(filmCard);
       }
     }
+  }
+});
+
+//todo search
+
+const searchInp = document.querySelector(".nav__input");
+const searchResultsContainer = document.querySelector(
+  ".container__search__results"
+);
+
+searchInp.addEventListener("input", async () => {
+  const KEYWORD = searchInp.value.trim();
+  const API_URL_KEYWORD = `https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword=${KEYWORD}&page=1`;
+
+  try {
+    const response = await fetch(API_URL_KEYWORD, {
+      method: "GET",
+      headers: {
+        "X-API-KEY": API_KEY,
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(response.status);
+    }
+
+    const data = await response.json();
+
+    searchResultsContainer.innerHTML = "";
+
+    data.films.forEach((elem) => {
+      const filmCard = document.createElement("div");
+      filmCard.classList.add("film__card");
+
+      filmCard.innerHTML = `
+        <div class="film__card-rating">7</div>
+        <button class="film__cardd-add__favorite">
+          <img src="https://cdn-icons-png.flaticon.com/128/2589/2589197.png" alt="" class="favorite__icon" />
+        </button>
+        <img src="${elem.posterUrl}" alt="${
+        elem.nameRu
+      }" class="film__card-img" />
+        <p class="film__card-title">${elem.nameRu}</p>
+        <p class="film__card-genres">${elem.genres
+          .map((item) => ` ${item.genre}`)
+          .filter((_, x) => x < 3)}</p>
+      `;
+
+      searchResultsContainer.appendChild(filmCard);
+    });
+  } catch (error) {
+    console.error("Error:", error);
   }
 });
