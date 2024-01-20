@@ -12,11 +12,13 @@
       <div class="nav__content">
         <h1 class="nav__title">Movie App</h1>
         <ul class="nav__item__contener">
-          <li class="nav__item li-premieres">Movie Premieres</li>
-          <li class="nav__item li-anticipated">Anticipated Movies</li>
-          <li class="nav__item li-top">Top Movies</li>
-          <li class="nav__item li-releases">New Releases</li>
-          <li class="nav__item li-favorite">favorite</li>
+          <a href="#prem" class="nav__item li-premieres">Movie Premieres</a>
+          <a href="#anti" class="nav__item li-anticipated">
+            Anticipated Movies
+          </a>
+          <a href="#top" class="nav__item li-top">Top Movies</a>
+          <a href="#newRel" class="nav__item li-releases">New Releases</a>
+          <a href="#fav" class="nav__item li-favorite">favorite</a>
         </ul>
         <form class="nav__form">
           <input placeholder="Search" class="nav__input" type="text" />
@@ -25,15 +27,20 @@
     </header>
 
     <div class="container__moves__list">
-      <div class="container__films__premiere hidden"></div>
-      <div class="container__films__anti__top hidden"></div>
-      <div class="container__films__top hidden"></div>
-      <div class="container__films__new__relised hidden"></div>
-      <div class="container__films__favorite hidden"></div>
+      <div id="prem" class="container__films__premiere hidden"></div>
+      <div id="anti" class="container__films__anti__top hidden"></div>
+      <div id="top" class="container__films__top hidden"></div>
+      <div id="newRel" class="container__films__new__relised hidden"></div>
+      <div id="fav" class="container__films__favorite hidden"></div>
       <div class="container__search__results hidden">
         <p class="films__search-p hidden">you are in seach result</p>
       </div>
     </div>
+
+    <script src="./main.js"></script>
+  </body>
+</html>
+
 
     <script src="./main.js"></script>
   </body>
