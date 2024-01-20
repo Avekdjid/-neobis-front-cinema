@@ -66,7 +66,8 @@ header {
 .container__films__top,
 .container__films__anti__top,
 .container__films__new__relised,
-.container__films__favorite {
+.container__films__favorite,
+.container__search__results {
   max-width: 120rem;
   width: 100%;
   display: flex;
@@ -145,10 +146,12 @@ header {
 .films__top-p,
 .films__top-anti-p,
 .films__releases-p,
-.films__favorites-p {
+.films__favorites-p,
+.films__search-p {
   font-size: 2rem;
   color: rgb(217, 216, 216);
   margin: 1rem 38%;
   max-width: 120rem;
   width: 100%;
 }
+
