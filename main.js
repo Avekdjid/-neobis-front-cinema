@@ -1,5 +1,4 @@
-
-const API_KEY = "0cdc608c-0bdc-494e-ae6c-bec3b627499b";
+const API_KEY = "6ee246ea-58e8-486f-b398-6b04faaa775b";
 
 const months = [
   "JANUARY",
@@ -39,11 +38,16 @@ const getPmiers = async () => {
       throw new Error(response.status);
     }
     const data = await response.json();
-    console.log(data);
+
+    let resData = [];
+    for (let i = 0; i < 10; i++) {
+      resData.push(data.items[i]);
+    }
+    console.log(resData);
 
     filmContenerPrem.innerHTML +=
       '<p class="films__premieres-p">Премьеры Tекущего Mесяца</p>';
-    data.items.forEach((elem) => {
+    resData.forEach((elem) => {
       filmContenerPrem.innerHTML += `
       <div class="film__card">
       <div class="film__card-rating">7</div>
@@ -100,12 +104,16 @@ const getAnti = async () => {
       throw new Error(response.status);
     }
     const data = await response.json();
-    console.log(data);
+    let resData = [];
+    for (let i = 0; i < 10; i++) {
+      resData.push(data.items[i]);
+    }
+    console.log(resData);
 
     filmContenerAnti.innerHTML +=
       '<p class="films__top-anti-p">Топ Oжидаемых Фильмов</p>';
 
-    data.items.forEach((elem) => {
+    resData.forEach((elem) => {
       filmContenerAnti.innerHTML += `<div class="film__card">
       <div class="film__card-rating">${Math.round(elem.ratingKinopoisk)}</div>
         <button class="film__cardd-add__favorite">
@@ -165,11 +173,16 @@ const getTop = async () => {
       throw new Error(response.status);
     }
     const data = await response.json();
-    console.log(data);
+
+    let resData = [];
+    for (let i = 0; i < 10; i++) {
+      resData.push(data.items[i]);
+    }
+    console.log(resData);
 
     filmContenerTop.innerHTML +=
       '<p class="films__top-p">Tоп Лучших Фильмов</p>';
-    data.items.forEach((elem) => {
+    resData.forEach((elem) => {
       filmContenerTop.innerHTML += `
 
       <div class="film__card">
@@ -204,7 +217,6 @@ liNavTop.addEventListener("click", () => {
     getTop();
   } else {
     filmContenerTop.innerHTML = "";
-    console.clear();
   }
 });
 
@@ -230,12 +242,16 @@ const getReleases = async () => {
       throw new Error(response.status);
     }
     const data = await response.json();
-    console.log(data);
+    let resData = [];
+    for (let i = 0; i < 10; i++) {
+      resData.push(data.releases[i]);
+    }
+    console.log(resData);
 
     filmContenerReleases.innerHTML +=
       '<p class="films__releases-p">Цифровые Релизы Текущего Месяца</p>';
 
-    data.releases.forEach((elem) => {
+    resData.forEach((elem) => {
       filmContenerReleases.innerHTML += `<div class="film__card">
       <div class="film__card-rating">${Math.round(elem.rating)}</div>
       <button class="film__cardd-add__favorite">
@@ -368,3 +384,4 @@ searchInp.addEventListener("input", async () => {
     console.error("Error:", error);
   }
 });
+
